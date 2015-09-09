@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testResults version="1.2">
+<sample t="216" lt="0" ts="1425029704308" s="false" lb="传存在数据库中hash_id并按销量排序" rc="" rm="" tn="setUp Thread Group 1-1" dt="" by="354"/>
+<sample t="20" lt="0" ts="1425029704531" s="true" lb="传入不存在数据库中hash_id" rc="" rm="" tn="setUp Thread Group 1-1" dt="" by="2">
+  <assertionResult>
+    <name>响应断言</name>
+    <failure>false</failure>
+    <error>false</error>
+  </assertionResult>
+</sample>
+<sample t="4" lt="0" ts="1425029704558" s="true" lb="传入hash_id为空" rc="" rm="" tn="setUp Thread Group 1-1" dt="" by="65">
+  <assertionResult>
+    <name>响应断言</name>
+    <failure>false</failure>
+    <error>false</error>
+  </assertionResult>
+</sample>
+<sample t="4" lt="0" ts="1425029704563" s="true" lb="传入hash_id为数组" rc="" rm="" tn="setUp Thread Group 1-1" dt="" by="65">
+  <assertionResult>
+    <name>响应断言</name>
+    <failure>false</failure>
+    <error>false</error>
+  </assertionResult>
+</sample>
+<sample t="4" lt="0" ts="1425029704567" s="true" lb="传入$shipping_system_id为空" rc="" rm="" tn="setUp Thread Group 1-1" dt="" by="76">
+  <assertionResult>
+    <name>响应断言</name>
+    <failure>false</failure>
+    <error>false</error>
+  </assertionResult>
+</sample>
+<sample t="3" lt="0" ts="1425029704571" s="true" lb="传入$shipping_system_id为数组" rc="" rm="" tn="setUp Thread Group 1-1" dt="" by="76">
+  <assertionResult>
+    <name>响应断言</name>
+    <failure>false</failure>
+    <error>false</error>
+  </assertionResult>
+</sample>
+<sample t="4" lt="0" ts="1425029704575" s="true" lb="传入存在数据库中$category为空" rc="" rm="" tn="setUp Thread Group 1-1" dt="" by="66">
+  <assertionResult>
+    <name>响应断言</name>
+    <failure>false</failure>
+    <error>false</error>
+  </assertionResult>
+</sample>
+<sample t="4" lt="0" ts="1425029704579" s="true" lb="传入存在数据库中$category为数组" rc="" rm="" tn="setUp Thread Group 1-1" dt="" by="72">
+  <assertionResult>
+    <name>响应断言</name>
+    <failure>false</failure>
+    <error>false</error>
+  </assertionResult>
+</sample>
+
+</testResults>

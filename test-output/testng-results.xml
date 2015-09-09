@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="91" started-at="2015-06-19T09:46:28Z" finished-at="2015-06-19T09:46:28Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="91" started-at="2015-06-19T09:46:28Z" finished-at="2015-06-19T09:46:28Z">
+      <class name="interfacePerformance.util.BasicPortal">
+        <test-method status="PASS" signature="main1()[pri:0, instance:interfacePerformance.util.BasicPortal@1fa68b9c]" name="main1" duration-ms="81" started-at="2015-06-19T17:46:28Z" finished-at="2015-06-19T17:46:28Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- main1 -->
+      </class> <!-- interfacePerformance.util.BasicPortal -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

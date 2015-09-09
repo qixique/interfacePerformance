@@ -1,0 +1,14 @@
+.classpath
+.setting
+.project
+.csignore
+bin
+src\interfacePerformance\test
+test-output
+src\userinf
+
+syntax: regexp
+^src/interfacePerformance/test$
+syntax: regexp
+^\.classpath$
+.hgignore
