@@ -23,14 +23,14 @@ public class dataStruction {
 	private static int num;
 	public static void main(String[] args) throws Exception {
 //		final String driver = "com.mysql.jdbc.Driver";
-		final String url = "jdbc:mysql://192.168.20.71:6001/user_address_0";
-		final String user = "fuckorder";
-		final String password = "jmordercd2013";
-		final String filePath = "D:/workspace/interfacePerformance/src/interfacePerformance/db/user_hp_address_map_1.xls";
+		final String url = "jdbc:mysql://192.168.20.71:9001/tuanmei";
+		final String user = "dev";
+		final String password = "jmdevcd";
+		final String filePath = "E:/file/2000007260.xls";
 		
 //		dataStruction.deleteDateByXls(url, user, password,"user_hp_address_map_1", filePath, "Sheet1", "Sheet1");
 		int num=dataStruction.creatTestData(url, user, password,
-				"user_hp_address_map_1", filePath, "Sheet1", "Sheet1");
+				"tuanmei_user_wish_deals", filePath, "Sheet1", "Sheet1");
 //		ArrayList<String> num1=dataStruction.deleteSqlAccurate("user_hp_address_map_1", filePath, "Sheet1", "Sheet1");
 //		System.out.println(num1);
 	}
@@ -159,21 +159,31 @@ public class dataStruction {
 		List<Map<String,String>> list=new ArrayList<Map<String,String>>();
 		Sheet sheet = workbook.getSheet(dataSheetName);
 		int rows=sheet.getRows();
-		//get data from every rows
-		for(int j=0;j<rows-1;j++){	
-			Map<String,String> map=new HashMap<String, String>();
-			//get data from one rows
-			for (int k = 0; k < numOfKey; k++) {
-				Cell cellOne = sheet1.getCell(k, 0);
-				primaryKey = cellOne.getContents();
-				if(primaryKey.equals(""))
-					continue;
-				if(j==0)
-				keys.add(primaryKey);
-				JSONArray jsonArray = getcolumns(file, dataSheetName, primaryKey);
-				map.put(primaryKey, jsonArray.get(j).toString());
+		Map<String,String> map=new HashMap<String, String>();
+		Map<String,JSONArray> cont=new HashMap<String,JSONArray>();
+		JSONArray jsonArray =null;
+		//获取key
+		//把数据完整put到cont里面
+		for (int k = 0; k < numOfKey; k++) {
+			Cell cellOne = sheet1.getCell(k, 0);
+			primaryKey = cellOne.getContents();
+			if(primaryKey.equals(""))
+				continue;
+			jsonArray=getcolumns(file, dataSheetName, primaryKey);
+			keys.add(primaryKey);
+			cont.put(primaryKey, jsonArray);
+		}
+		
+		//把数据数列变成横列
+		for(int i=0;i<cont.get(keys.get(1)).length();i++)
+		{
+			Map<String,String> map1=new HashMap<String, String>();
+			for(int j=0;j<cont.size();j++)
+			{
+				String a=cont.get(keys.get(j)).get(i).toString();
+				map1.put(keys.get(j), a);
 			}
-		list.add(map);
+			list.add(map1);
 		}
 		//sql construction
 		for(int i=0;i<list.size();i++)
@@ -189,8 +199,6 @@ public class dataStruction {
 			}
 			sqlLists.add(sb.toString());
 		}
-		System.out.println(sqlLists);
-//		System.out.println(System.currentTimeMillis());
 		return sqlLists;
 	}
 	
@@ -223,10 +231,9 @@ public class dataStruction {
 					for (int j = 1; j < sheet.getRows(); j++) {
 						if (sheet.getCell(i, j).getContents() == null
 								|| sheet.getCell(i, j).getContents().equals("")) {
-							break;
+							;
 						}
 						jsonArray.put(sheet.getCell(i, j).getContents());
-
 					}
 					break;
 				} else {

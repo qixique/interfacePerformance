@@ -41,3 +41,12 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+.hg
+.hg/cache/tags
+.hg/store/data/src/interface_performance/util/data_struction.java.i
+*.i
+.hg/store/undo
+.hg/undo.dirstate
+*.hgignore
+.hg/undo.dirstate
+.hg/cache/branch2-served

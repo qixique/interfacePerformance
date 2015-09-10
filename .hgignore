@@ -12,3 +12,5 @@ syntax: regexp
 syntax: regexp
 ^\.classpath$
 .hgignore
+.git
+.class
