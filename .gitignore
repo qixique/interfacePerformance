@@ -50,3 +50,8 @@ Temporary Items
 *.hgignore
 .hg/undo.dirstate
 .hg/cache/branch2-served
+.hg/*
+*.i
+.hg/dirstate
+bin/interfacePerformance/util/dataStruction.class
+*.class

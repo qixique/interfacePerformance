@@ -47,9 +47,10 @@ public class dataFromExcel extends AbstractJavaSamplerClient {
 		String filePath=arg0.getParameter("filePath");
 		String tableName=arg0.getParameter("table");
 		String sheetForAdd=arg0.getParameter("sheetForAdd");
+		String sheetForDel=arg0.getParameter("sheetForDel");
 		//end for parameter build
 		//begin to call sql strunction
-		int insertnum=dataStruction.creatTestData(url, user, pwd, tableName, filePath, sheetForAdd, sheetForAdd);
+		int insertnum=dataStruction.creatTestData(url, user, pwd, tableName, filePath, sheetForAdd, sheetForDel);
 		
 		if(insertnum>0)
 		{
@@ -70,8 +71,8 @@ public class dataFromExcel extends AbstractJavaSamplerClient {
 		 args.addArgument("dbConfig", "");
 		 args.addArgument("filePath", "");
 		 args.addArgument("table", "");
-//		 args.addArgument("sheetForDel", "");
 		 args.addArgument("sheetForAdd", "");
+		 args.addArgument("sheetForDel", "");
 		return args;
 		
 	}

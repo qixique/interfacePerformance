@@ -30,7 +30,7 @@ public class dataStruction {
 		
 //		dataStruction.deleteDateByXls(url, user, password,"user_hp_address_map_1", filePath, "Sheet1", "Sheet1");
 		int num=dataStruction.creatTestData(url, user, password,
-				"tuanmei_user_wish_deals", filePath, "Sheet1", "Sheet1");
+				"tuanmei_user_wish_deals", filePath, "Sheet1", "Sheet2");
 //		ArrayList<String> num1=dataStruction.deleteSqlAccurate("user_hp_address_map_1", filePath, "Sheet1", "Sheet1");
 //		System.out.println(num1);
 	}
@@ -157,9 +157,9 @@ public class dataStruction {
 		List<String> keys=new ArrayList<String>();
 		
 		List<Map<String,String>> list=new ArrayList<Map<String,String>>();
-		Sheet sheet = workbook.getSheet(dataSheetName);
-		int rows=sheet.getRows();
-		Map<String,String> map=new HashMap<String, String>();
+//		Sheet sheet = workbook.getSheet(dataSheetName);
+//		int rows=sheet.getRows();
+//		Map<String,String> map=new HashMap<String, String>();
 		Map<String,JSONArray> cont=new HashMap<String,JSONArray>();
 		JSONArray jsonArray =null;
 		//获取key
@@ -175,7 +175,7 @@ public class dataStruction {
 		}
 		
 		//把数据数列变成横列
-		for(int i=0;i<cont.get(keys.get(1)).length();i++)
+		for(int i=0;i<cont.get(keys.get(0)).length();i++)
 		{
 			Map<String,String> map1=new HashMap<String, String>();
 			for(int j=0;j<cont.size();j++)
@@ -199,6 +199,7 @@ public class dataStruction {
 			}
 			sqlLists.add(sb.toString());
 		}
+		System.out.println(sqlLists);
 		return sqlLists;
 	}
 	
