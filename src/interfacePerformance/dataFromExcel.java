@@ -1,11 +1,14 @@
 package interfacePerformance;
 
+import java.io.IOException;
+
 import interfacePerformance.util.dataStruction;
 
 import org.apache.jmeter.config.Arguments;
 import org.apache.jmeter.protocol.java.sampler.AbstractJavaSamplerClient;
 import org.apache.jmeter.protocol.java.sampler.JavaSamplerContext;
 import org.apache.jmeter.samplers.SampleResult;
+import org.apache.jmeter.services.FileServer;
 import org.apache.jmeter.threads.JMeterContextService;
 import org.apache.jmeter.threads.JMeterVariables;
 
@@ -48,9 +51,22 @@ public class dataFromExcel extends AbstractJavaSamplerClient {
 		String tableName=arg0.getParameter("table");
 		String sheetForAdd=arg0.getParameter("sheetForAdd");
 		String sheetForDel=arg0.getParameter("sheetForDel");
+		String current=null;
+		try {
+			current = new java.io.File( "." ).getCanonicalPath();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String jmxPath=FileServer.getFileServer().getBaseDir();
 		//end for parameter build
 		//begin to call sql strunction
-		int insertnum=dataStruction.creatTestData(url, user, pwd, tableName, filePath, sheetForAdd, sheetForDel);
+		if(filePath.startsWith("/")||filePath.indexOf(":")!=-1)
+			filePath=arg0.getParameter("filePath");
+		else
+			filePath=jmxPath+"/"+filePath;
+		int insertnum=0;
+		insertnum=dataStruction.creatTestData(url, user, pwd, tableName, filePath, sheetForAdd, sheetForDel);
 		
 		if(insertnum>0)
 		{
@@ -77,4 +93,9 @@ public class dataFromExcel extends AbstractJavaSamplerClient {
 		
 	}
 
+	public static void main(String[] args) throws IOException {
+		System.out.println("test");
+//		String current = new java.io.File( "." ).getCanonicalPath();
+//        System.out.println("Current dir:"+current);
+	}
 }

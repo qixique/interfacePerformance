@@ -36,16 +36,16 @@ public class BasicController {
 		
 		//生成signature的MD5
 		String dataString = jsonObject.get("data").toString();
-		
-		String signature = JmMD5.getSignatureMD5(dataString,Rpc_secret_key);
+		String signature = JmMD5.getSignatureMD5(dataString.replace("\\\\", "\\"),Rpc_secret_key);
 		jsonObject.put("signature", signature);
 		
 		//将字符串进行转义，添加到jsonObject
 		jsonObject.put("data", jsonObject.getString("data"));
 		
 		//将jsonObject转化为string，然后进行协议格式化
-		String data = Package.formatPkg(command,jsonObject.toString());
+		String data = Package.formatPkg(command,jsonObject.toString().replace("\\\\", "\\"));
 //		System.out.println(System.currentTimeMillis());
+//		System.out.println(data);
 		rpcTextClient.send(data);
 
 		//读取第一行数据，即返回值长

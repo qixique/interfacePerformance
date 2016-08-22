@@ -18,6 +18,11 @@ public class MD5 {
 	    String[][] strings = {{"1","2","3"},{"a","b"}};
 	    
 	    System.out.println(strings.length);
+	    for(int i=0;i<1000;i++)
+	    {
+	    	System.out.println(i);
+	    	System.out.println(MD5Crypt(i));
+	    }
 	  }
   
   public static String byte2hex(byte[] b) {

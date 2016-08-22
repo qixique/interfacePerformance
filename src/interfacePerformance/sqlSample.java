@@ -89,7 +89,7 @@ public class sqlSample extends AbstractJavaSamplerClient {
 			 {
 				 System.out.println(arg0.getParameter(sql));
 				 result = qdb.updateDb(url, arg0.getParameter(sql), user, pwd);
-				 resultTotal +=  Integer.toString(result)+",";
+				 this.resultTotal +=  Integer.toString(result)+",";
 				 
 			 }
 
@@ -112,7 +112,8 @@ public class sqlSample extends AbstractJavaSamplerClient {
 		}
 //		if(result!=0)
 		sr.setSuccessful(true);
-		sr.setResponseData(resultTotal+"");
+		sr.setResponseData(this.resultTotal+"");
+		this.resultTotal="";
 		sr.sampleEnd();
 		return sr;
 	}

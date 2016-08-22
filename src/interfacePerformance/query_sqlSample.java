@@ -88,11 +88,11 @@ public class query_sqlSample extends AbstractJavaSamplerClient {
 		try {
 //			 String sql=arg0.getParameter("query_sql");
 //			 sql=new StrFormat().format(sql);
-			 if(!sql.equals(""))
+			 if(!sql.equals("") && records != null && !records.isEmpty())
 			 {
 //				 List<Map<String,Object>> records = QueryHelper.getManyRecordsFromSQL(url, user, pwd, sql);
 				
-				 result=records.toString();
+				result=records.toString();
 				String parmv=arg0.getParameter("expected_value");
 				String[] parm1=parmv.split(";");
 				parmlength=parm1.length;
@@ -128,11 +128,8 @@ public class query_sqlSample extends AbstractJavaSamplerClient {
 				}
 				
 			 }
-
-		 
-
-
-			 
+			 else
+				 flag =-1;
 			
 		} catch (SecurityException e) {
 			// TODO Auto-generated catch block
@@ -143,7 +140,15 @@ public class query_sqlSample extends AbstractJavaSamplerClient {
 		}
 //		if(result!=0)
 		if(flag==(records.size()*parmlength))
+		{
 			sr.setSuccessful(true);
+			result+="\n数据对比完整正确！";
+		}
+		else if(flag==-1)
+		{
+			sr.setSuccessful(false);
+			result="查无数据";
+		}
 		else
 		{
 			sr.setSuccessful(false);

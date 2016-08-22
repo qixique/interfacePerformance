@@ -122,14 +122,14 @@ public class operationSampleForMessage extends AbstractJavaSamplerClient {
 		int parmlength=0;
 		String sql_result=null;
 		Map<String, String> data=new HashMap<String, String>();
+		String sql=arg0.getParameter("querySql");
+		sql=new StrFormat().format(sql);
+		List<Map<String,Object>> records = QueryHelper.getManyRecordsFromSQL(url, user, pwd, sql);
+		
 		try {
-			 String sql=arg0.getParameter("querySql");
-			 sql=new StrFormat().format(sql);
 			 if(!sql.equals(""))
 			 {
-				 List<Map<String,Object>> records = QueryHelper.getManyRecordsFromSQL(url, user, pwd, sql);
-				
-				 sql_result=records.toString();
+				sql_result=records.toString();
 				String parmv=arg0.getParameter("column:value");
 				String[] parm1=parmv.split(";");
 				parmlength=parm1.length;
@@ -138,15 +138,38 @@ public class operationSampleForMessage extends AbstractJavaSamplerClient {
 				{
 					parm2[i]=parm1[i].split(":");
 				}
+//				for(int i=0;i<parm1.length;i++)
+//				{
+//					System.out.println(records.get(0).get(parm2[i][0]));
+//					if(records.get(0).get(parm2[i][0]).equals(parm2[i][1]))
+//					{
+//						flag++;
+//					}
+//					else
+//					data.put(parm2[i][0], parm2[i][1]);
+//				}
+				for(int j=0;j<records.size();j++)
+				{
 				for(int i=0;i<parm1.length;i++)
 				{
-					System.out.println(records.get(0).get(parm2[i][0]));
-					if(records.get(0).get(parm2[i][0]).equals(parm2[i][1]))
+					if(parm2[i].length==1)
 					{
-						flag++;
+						if(records.get(j).get(parm2[i][0]).equals(""))
+						{ 
+							flag++;
+						}
+						data.put(parm2[i][0], "");
 					}
 					else
-					data.put(parm2[i][0], parm2[i][1]);
+					{
+						if(records.get(j).get(parm2[i][0]).equals(parm2[i][1]))
+						{ 
+							flag++;
+						}
+						data.put(parm2[i][0], parm2[i][1]);
+					}
+					
+				}
 				}
 				
 			 }
@@ -159,7 +182,7 @@ public class operationSampleForMessage extends AbstractJavaSamplerClient {
 			e.printStackTrace();
 		}
 		
-		if(flag==parmlength)
+		if(flag==(records.size()*parmlength))
 			sr.setSuccessful(true);
 		else
 		{

@@ -1,6 +1,8 @@
 package interfacePerformance.util;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,6 +19,8 @@ import jxl.Workbook;
 
 
 
+import jxl.read.biff.BiffException;
+
 import org.json.JSONArray;
 
 public class dataStruction {
@@ -28,11 +32,10 @@ public class dataStruction {
 		final String password = "jmdevcd";
 		final String filePath = "E:/file/2000007260.xls";
 		
-//		dataStruction.deleteDateByXls(url, user, password,"user_hp_address_map_1", filePath, "Sheet1", "Sheet1");
+		MD5 md5=new MD5();
 		int num=dataStruction.creatTestData(url, user, password,
 				"tuanmei_user_wish_deals", filePath, "Sheet1", "Sheet2");
-//		ArrayList<String> num1=dataStruction.deleteSqlAccurate("user_hp_address_map_1", filePath, "Sheet1", "Sheet1");
-//		System.out.println(num1);
+//		getRow(filePath, "Sheet1", "1");
 	}
 
 	public static int creatTestData(String url, String user, String password,
@@ -143,7 +146,6 @@ public class dataStruction {
 	public static ArrayList<String> deleteSqlAccurate(String tabelName, String file,
 			String dataSheetName, String deleteSheetName) throws Exception {
 		// 初始化返回的sql语句列表 精准
-//		System.out.println(System.currentTimeMillis());
 		ArrayList<String> sqlLists = new ArrayList<String>();
 		// 获取文件路径，将文件内容以流的形式输出
 		Workbook workbook = Workbook.getWorkbook(new FileInputStream(file));
@@ -157,9 +159,6 @@ public class dataStruction {
 		List<String> keys=new ArrayList<String>();
 		
 		List<Map<String,String>> list=new ArrayList<Map<String,String>>();
-//		Sheet sheet = workbook.getSheet(dataSheetName);
-//		int rows=sheet.getRows();
-//		Map<String,String> map=new HashMap<String, String>();
 		Map<String,JSONArray> cont=new HashMap<String,JSONArray>();
 		JSONArray jsonArray =null;
 		//获取key
@@ -185,6 +184,7 @@ public class dataStruction {
 			}
 			list.add(map1);
 		}
+		System.out.println(list);
 		//sql construction
 		for(int i=0;i<list.size();i++)
 		{
@@ -204,6 +204,7 @@ public class dataStruction {
 	}
 	
 	
+
 	
 	/*
 	 * 根据字段名找出该列的值，放进数组
@@ -378,7 +379,7 @@ public class dataStruction {
 			}
 			
 		}
-		// System.out.println("create的SQL为：" + sb.toString());
+		 System.out.println("create的SQL为：" + sb.toString());
 
 		return sb.toString();
 	}

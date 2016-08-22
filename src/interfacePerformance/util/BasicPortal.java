@@ -40,7 +40,8 @@ public class BasicPortal {
 		
 		BasicPortal bp=new BasicPortal();
 		
-		String result=bp.exe("JumeiProduct_Read_Public","getSellableMallProductIdsByProductIdAndSite",new JSONArray("[['4000155'],{'site':['cd']}]"),"192.168.16.140","3201");
+//		String result=bp.exe("Get_Nearby","getNearbyStations",new JSONArray("['\\u5fb7\\u9633','31.0651','104.384','500']"),"192.168.16.140","2110");
+		String result=bp.exe("Get_Nearby","getNearbyStations","\\u5fb7\\u9633","192.168.16.140","2110");
 		Object obj=JSONValue.parse(result);
 		System.out.println(System.currentTimeMillis());
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();

@@ -57,6 +57,7 @@ public class QueryHelper {
 				for(int i = 1; i <= columns; i++){
 					data.put(meta.getColumnLabel(i), readFiled(rs,meta.getColumnLabel(i)));
 				}
+				
 				datas.add(data);
 			}
 			rs.close();

@@ -23,7 +23,6 @@ public class JmMD5 {
 	  public static String getSignatureMD5(String data, String rpc_secret_key){
 		  //md5加密算法
 		  String md5string = data + "&" + rpc_secret_key;
-		  
 		  return MD5.MD5Crypt(md5string);
 	  }
 
